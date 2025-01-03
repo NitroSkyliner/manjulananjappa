@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manjula Nanjappa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="./Images/Manjula 5.jpeg" type="image/jpeg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;  
+            box-sizing: border-box;
+        }
+        
+        body {
+            position: relative;
+            background-color: black;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./Images/Manjula 4.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            animation: gradientFadeIn 1s ease-in forwards;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes gradientFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        header {
+            position: fixed;
+            top: 20px;
+            width: fit-content;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            opacity: 0;
+            border: 2px solid white;
+            border-radius: 30px;
+            animation: navbarDropdown 0.5s ease-out forwards;
+            animation-delay: 3s;
+        }
+
+        @keyframes navbarDropdown {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -100%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 12px;
+            border-radius: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 6px 10px;
+            margin: 0 3px;
+            font-size: 16px;
+            font-family: 'Lato', sans-serif;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: white;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        nav a:hover::after {
+            transform: scaleX(1);
+        }
+
+        nav a:hover {
+            text-shadow: 0 0 10px white;
+        }
+
+        .intro-text {
+            position: absolute;
+            right: 8%;
+            top: 30%;
+            max-width: 600px;
+            opacity: 0;
+            transform: translateX(100px);
+            animation: slideIn 1s ease-out forwards;
+            animation-delay: 2s;
+            z-index: 1;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .intro-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .intro-body {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.9em;
+            color: white;
+            line-height: 1.6;
+            margin-bottom: 50px;
+        }
+
+        #contact {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .linkedin-icon {
+            width: 60px;
+            height: 60px;
+            transition: transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .linkedin-icon:hover {
+            transform: scale(1.2);
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            font-size: 2em;
+            padding: 80px 7.5%; /* Uniform padding for all sections */
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-content,
+        .achievements-section,
+        .unique-section {
+            margin-top: 0; /* Removed extra margins */
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+            padding: 0 5%;
+            opacity: 0;
+            transform: translateY(100px);
+            animation: fadeUp 1s ease-out forwards;
+        }
+        .about-content h2,
+        .achievements-section h2,
+        .unique-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .about-content p,
+        .achievements-content p,
+        .unique-content p {
+            font-size: 0.9em;
+            color: white;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        .achievements-content {
+            text-align: left;
+            max-width: 100%;
+            margin: 50px auto;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .achievements-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6em;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #about {
+            margin-top: 550px; /* Custom gap for About section */
+        }
+    </style>
+</head>
+<body>
+    <div class="background-image" id="background"></div>
+    <header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#unique">What Makes Me Unique</a>
+            <a href="#contact">Contact Me</a>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="intro-text">
+            <h1 class="intro-name">Introducing Manjula Nanjappa</h1>
+            <p class="intro-body">
+                A strategic executive with over 25+ years of experience driving digital transformations across diverse industries. Specializes in IT Operations, Cloud Infrastructure, Cybersecurity, Analytics, and AI solutions. Achieved exceptional outcomes within Fortune 100 corporations globally. Skilled in leading teams across diverse sectors--telecommunications, oil/gas, Infrastructure, Utility, Health, Manufacturing, and Education. Committed to enhancing customer experience, optimizing digital assets, and driving operational efficiencies. Proficiency in orchestrating Mergers & Acquisitions, adeptly navigated change management intricacies, and spearheading technology transformations to enable seamless integration and optimization.
+            </p>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-content">
+            <h2>What has been brought to the table </h2>
+            <p>Global teams were successfully led in driving digital transformation strategies, managing end-to-end IT operations, and overseeing ERP, CRM, and supply chain management solutions. It was ensured that technology was seamlessly aligned with business objectives, optimizing system performance while maintaining security and operational efficiency. The focus was on enabling the right technology solutions to support smooth operations.
+
+            <p>M&A was a key area of expertise. Technology integration in mergers and acquisitions was successfully managed, bringing together different systems into unified, optimized solutions that delivered operational improvements.            </p>
+
+            <p>From optimizing cloud infrastructures to deploying AI-driven solutions and cybersecurity strategies, I was at the forefront of enabling organizations to leverage cutting-edge technologies that improved efficiency and secured data.            </p>
+
+            <p>Experience included leading data center setups in collaboration with multi-stakeholder partners, contributing to faster data processing and significant cost savings.            </p>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <div class="achievements-section">
+            <h2>Key Achievements</h2>
+            <div class="achievements-content">
+                <h3>Global ERP Transformation</h3>
+                <p>
+                    -A global ERP transformation was spearheaded across multiple sites and geographic locations.<br>
+                    -Technology landscapes were unified, streamlining supply chain management and vendor solutions.<br>
+                    -Result: A 30% improvement in system efficiency was achieved.
+                </p>
+
+                <h3>SAP Enhancements & HANA Migration</h3>
+                <p>
+                    - Seamless SAP updates and enhancements were delivered, preventing business interruptions in the utility sector.<br>
+                    - A successful HANA migration was led with minimal downtime, improving data processing speed by 25%.<br>
+                    - Impact: Decision-making and operational efficiency were enhanced.
+                </p>
+
+                <h3>Data Center Setup & Migration</h3>
+                <p>
+                    - Complex data center migrations during mergers were managed, ensuring minimal downtime and a 35% improvement in system availability.<br>
+                    - A shared data center was established in collaboration with the City of Calgary, reducing operational costs by 20% and increasing data processing speed by 30%.
+                </p>
+
+                <h3>Cybersecurity & Compliance Leadership</h3>
+                <p>
+                    - IAM and PAM solutions were implemented, reducing security incidents by 35%.<br>
+                    - 95% compliance with frameworks like ISO 27001 and SOC 2 was achieved, strengthening the cybersecurity posture.<br>
+                    - Security operations were enhanced through penetration testing and robust policy development.
+                
+                </p>
+
+                <h3>Data Analytics Expertise</h3>
+                <p>
+                    - Advanced data analysis and visualization techniques were employed to convert complex datasets into actionable insights, resulting in a 20% increase in operational efficiency.<br>
+                    - Predictive modeling and business intelligence systems were developed, enabling informed decision-making.
+                
+                </p>
+
+                <h3>Industry specific solutions</h3>
+                <p>
+                    - Digital transformation solutions tailored to the Manufacturing, Healthcare, and Utility industries were exclusively implemented, resulting in a 15% improvement in operational efficiency, a 20% boost in performance metrics, and sustained growth within these sectors.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="unique">
+        <div class="unique-section">
+            <div class="unique-content">
+                <h2>What Made Me Unique</h2>
+                <p>
+                    I was driven by results. Whether it was setting up a data center, leading a large-scale cloud migration, or helping organizations scale their IT infrastructure, the focus was on delivering measurable outcomes that improved efficiency, reduced costs, and positioned businesses for future growth.                </p>
+                <p>
+                    In addition to infrastructure optimization, I specialized in end-to-end application and software delivery, utilizing DevOps and Agile methodologies to streamline development, deployment, and operations. It was ensured that all processes adhered to secure practices and aligned with IT governance frameworks, enabling rapid, reliable, and compliant software releases.
+
+                </p>
+                <p>
+                    I had the privilege of working in senior leadership roles across industries, where I served as a trusted partner to clients, drove AI strategies, optimized infrastructure, and ensured regulatory compliance in highly sensitive environments such as healthcare and utilities. My experience in governance ensured that technology solutions met both operational goals and industry standards.
+
+                </p>
+                <p>
+                    My experience spoke for itself, and I was passionate about helping businesses leverage technology to achieve their goals. If digital transformation, optimizing IT operations, or enhancing application delivery with secure, agile, and efficient processes were sought, I would have loved to help make that happen.
+
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <a href="https://www.linkedin.com/in/manjula-nanjappa-5108658/?originalSubdomain=ca" target="_blank">
+            <img src="./Images/linkedin.png" alt="LinkedIn" class="linkedin-icon">
+        </a>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = document.querySelector(this.getAttribute('href'));
+                section.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
